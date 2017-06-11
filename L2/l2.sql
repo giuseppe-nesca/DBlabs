@@ -51,3 +51,26 @@ HAVING COUNT(*)>( SELECT COUNT(*)
                   AND X.DATA<TO_DATE('01/01/1982','DD/MM/YYYY')
                   AND X.DELIVERERID=D.DELIVERERID)                                         
 ;
+
+
+/* Q7
+ * Trovare il codice identificativo dei fattorini che hanno fatto consegne (o ritiri) 
+ * in tutte le aziende in cui il fattorino 57 ha fatto delle consegne (o dei ritiri).
+ */
+SELECT DISTINCT(DELIVERERID)
+FROM COMPANYDEL
+WHERE 
+  COMPANYID IN (
+    SELECT C.COMPANYID
+    FROM COMPANYDEL C
+    WHERE C.DELIVERERID = 57
+  )
+;
+
+/* Q8
+ * Trovare il codice identificativo dei fattorini che hanno fatto consegne (o ritiri) 
+ * solo nelle aziende in cui il fattorino 57 ha fatto delle consegne (o dei ritiri).
+ */
+
+
+
