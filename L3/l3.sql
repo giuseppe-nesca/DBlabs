@@ -46,4 +46,14 @@
  * presso un’azienda sono quelli che hanno fatto almeno una consegna o un ritiro 
  * presso l’azienda in esame).
  */
+ SELECT COMPANYID
+ FROM COMPANYDEL
+ GROUP BY COMPANYID
+ HAVING COUNT(DISTINCT DELIVERERID) > (
+    SELECT COUNT(*)*30/100
+    FROM DELIVERERS
+  )
+ ;
+ 
+ 
  
