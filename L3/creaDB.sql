@@ -1,32 +1,39 @@
+DROP TABLE PROGRAMMA;
+DROP TABLE ISTRUTTORE;
+DROP TABLE CORSI;
 
 CREATE TABLE ISTRUTTORE
 (
-  CodFisc char (16) PRIMARY KEY,
+  CodFisc char (16),
   Nome char (20),
-  Cognome,
+  Cognome char (20),
   DataNscita date,
-  Email,
-  Telefono char (13)
+  Email char(50),
+  Telefono char (13),
+  
+  PRIMARY KEY (CodFisc)
 );
 
 CREATE TABLE CORSI
 (
   CodC char (5) PRIMARY KEY,
-  Nome,
-  Tipo,
-  Livello smallint CHECK ( Livello >=1 AND Livello <= 4 )
+  Nome char (20),
+  Tipo char (50),
+  Livello smallint,
+  
+  CONSTRAINT Livello CHECK ( Livello >=1 AND Livello <= 4 )
 );
 
 CREATE TABLE PROGRAMMA
 (
-  CodFisc,
-  Giorno ,
-  OraInizio,
+  CodFisc char (20),
+  Giorno char (10),
+  OraInizio smallint,
   Durata smallint,
-  CodC,
-  Sala,
+  CodC char (5),
+  Sala char (2),
   
-  FOREIGN KEY (CodFisc) REFERENCES ISTRUTTORE(CodFisc),
-  FOREIGN KEY (CodC) REFERENCES CORSI (CodC),
-  PRIMARY KEY ( CodFisc, Giorno, OraInizio )
+  PRIMARY KEY ( CodFisc, Giorno, OraInizio ),
+  FOREIGN KEY (CodFisc) REFERENCES ISTRUTTORE(CodFisc) ON DELETE CASCADE,
+  FOREIGN KEY (CodC) REFERENCES CORSI (CodC) ON DELETE CASCADE
 );
