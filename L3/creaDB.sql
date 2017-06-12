@@ -4,20 +4,20 @@ DROP TABLE CORSI;
 
 CREATE TABLE ISTRUTTORE
 (
-  CodFisc char (16),
-  Nome char (20),
+  CodFisc char (20),
+  Nome char (50),
   Cognome char (20),
-  DataNscita date,
+  DataNascita date,
   Email char(50),
-  Telefono char (13),
+  Telefono char (20),
   
   PRIMARY KEY (CodFisc)
 );
 
 CREATE TABLE CORSI
 (
-  CodC char (5) PRIMARY KEY,
-  Nome char (20),
+  CodC char (10) PRIMARY KEY,
+  Nome char (50),
   Tipo char (50),
   Livello smallint,
   
@@ -27,11 +27,11 @@ CREATE TABLE CORSI
 CREATE TABLE PROGRAMMA
 (
   CodFisc char (20),
-  Giorno char (10),
-  OraInizio smallint,
+  Giorno char (15),
+  OraInizio char (5),
   Durata smallint,
-  CodC char (5),
-  Sala char (2),
+  CodC char (10),
+  Sala char (5),
   
   PRIMARY KEY ( CodFisc, Giorno, OraInizio ),
   FOREIGN KEY (CodFisc) REFERENCES ISTRUTTORE(CodFisc) ON DELETE CASCADE,
